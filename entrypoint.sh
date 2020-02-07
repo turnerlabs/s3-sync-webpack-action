@@ -31,8 +31,10 @@ fi
 mkdir -p ~/.aws
 touch ~/.aws/credentials
 
+echo "Change directory to Source"
 cd $SOURCE_DIR
 
+echo "Run npx"
 npx webpack --mode development
 
 echo "[default]

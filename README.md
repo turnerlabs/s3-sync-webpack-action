@@ -20,6 +20,7 @@ jobs:
     - uses: turnerlabs/s3-sync-webpack-action@master
       env:
         SOURCE_DIR: ${{ github.workspace }}
+        DIST_DIR: ${{ github.workspace }}/dist/
         AWS_DEFAULT_REGION: 'us-east-1'
         AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}

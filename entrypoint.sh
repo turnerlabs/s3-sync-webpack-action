@@ -27,6 +27,11 @@ if [ -z "$SOURCE_DIR" ]; then
   exit 1
 fi
 
+if [ -z "$DIST_DIR" ]; then
+  echo "DIST_DIR is not set. Quitting."
+  exit 1
+fi
+
 
 mkdir -p ~/.aws
 touch ~/.aws/credentials
@@ -36,7 +41,6 @@ aws_access_key_id = ${AWS_ACCESS_KEY_ID}
 aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" > ~/.aws/credentials
 
 echo "Change directory to Source"
-echo $SOURCE_DIR
 cd $SOURCE_DIR
 
 echo "Install webpack"
@@ -45,9 +49,9 @@ npm install webpack webpack-cli
 echo "Run npx"
 npx webpack --mode development
 
-if [ -d "$SOURCE_DIR" ]; then
+if [ -d "$DIST_DIR" ]; then
     echo "Copying to website folder"
-    aws s3 sync ${SOURCE_DIR} s3://${AWS_S3_BUCKET} --exact-timestamps --delete --region ${AWS_DEFAULT_REGION} $*
+    aws s3 sync ${DIST_DIR} s3://${AWS_S3_BUCKET} --exact-timestamps --delete --region ${AWS_DEFAULT_REGION} $*
 fi
 
 echo "Cleaning up things"

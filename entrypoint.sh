@@ -36,7 +36,11 @@ aws_access_key_id = ${AWS_ACCESS_KEY_ID}
 aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" > ~/.aws/credentials
 
 echo "Change directory to Source"
+echo $SOURCE_DIR
 cd $SOURCE_DIR
+
+echo "Install webpack"
+npm install webpack webpack-cli
 
 echo "Run npx"
 npx webpack --mode development

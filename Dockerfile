@@ -8,7 +8,6 @@ RUN pip install --quiet --no-cache-dir awscli==${AWSCLI_VERSION}
 
 RUN apk add --update nodejs npm
 RUN apk add --update npm
-RUN npm install -g webpack webpack-cli
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
